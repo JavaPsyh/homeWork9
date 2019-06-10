@@ -114,7 +114,7 @@ public class ErsatzLinkedList<T> implements ErsatzList<T> {
     public Node<T> iterator(int index) {
         Node<T> result = getFirstNode();
         if (verificationOfIndex(index)) {
-            for (int i = 1; i <= index; i++) {
+            for (int i = 0; i < index; i++) {
                 result = result.next;
             }
         }
