@@ -12,9 +12,9 @@ public interface ErsatzList<T> {
 
     void set(T value, int index);
 
-    T remove(int index); // возвращаем элемент, который удалили
+    T remove(int index);
 
-    T remove(T t); // удалять первый, который встретится
+    T remove(T t);
 
     int size();
 
