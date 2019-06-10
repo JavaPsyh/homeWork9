@@ -1,6 +1,8 @@
-package ersatz.linked.list;
+package my.linked.list;
 
-public class ErsatzLinkedList<T> implements ErsatzList<T> {
+import java.util.Objects;
+
+public class MyLinkedList<T> implements MyList<T> {
 
     private Node<T> lastNode;
     private Node<T> firstNode;
@@ -38,9 +40,10 @@ public class ErsatzLinkedList<T> implements ErsatzList<T> {
     }
 
     @Override
-    public void addAll(ErsatzList<T> ersatzList) {
-        for (int i = 0; i < ersatzList.size(); i++) {
-            add(ersatzList.get(i));
+    public void addAll(MyList<T> myList) {
+        for (int i = 0; myList != null && i < myList.size(); i++) {
+            add(myList.get(i));
+            // if (isEmpty(myList)) nothing happens and program will be finished correctly;
         }
     }
 
@@ -76,11 +79,11 @@ public class ErsatzLinkedList<T> implements ErsatzList<T> {
 
     @Override
     public T remove(T t) {
-        Node<T> temp = getFirstNode();
+        Node<T> temp = firstNode;
         int index = 0;
         if (!isEmpty()) {
             for (int i = 0; i < size(); i++) {
-                if (temp.item == t) {
+                if (temp.item.equals(t)) {
                     index = i;
                     break;
                 }
@@ -107,12 +110,8 @@ public class ErsatzLinkedList<T> implements ErsatzList<T> {
         return true;
     }
 
-    public Node<T> getFirstNode() {
-        return firstNode;
-    }
-
     public Node<T> iterator(int index) {
-        Node<T> result = getFirstNode();
+        Node<T> result = firstNode;
         if (verificationOfIndex(index)) {
             for (int i = 0; i < index; i++) {
                 result = result.next;
@@ -121,4 +120,27 @@ public class ErsatzLinkedList<T> implements ErsatzList<T> {
         return result;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MyLinkedList<?> that = (MyLinkedList<?>) o;
+        return size == that.size &&
+                Objects.equals(lastNode, that.lastNode) &&
+                Objects.equals(firstNode, that.firstNode);
+    }
+
+
+    private static class Node<T> {
+
+        private Node<T> prev;
+        private T item;
+        private Node<T> next;
+
+        Node(Node<T> prev, T element, Node<T> next) {
+            this.prev = prev;
+            this.item = element;
+            this.next = next;
+        }
+    }
 }

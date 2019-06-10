@@ -1,12 +1,12 @@
-package ersatz.linked.list;
+package my.linked.list;
 
-public interface ErsatzList<T> {
+public interface MyList<T> {
 
     void add(T value);
 
     void add(T value, int index);
 
-    void addAll(ErsatzList<T> ersatzList);
+    void addAll(MyList<T> myList);
 
     T get(int index);
 
