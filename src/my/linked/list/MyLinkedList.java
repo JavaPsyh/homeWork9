@@ -124,7 +124,7 @@ public class MyLinkedList<T> implements MyList<T> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        MyLinkedList<?> that = (MyLinkedList<?>) o;
+        MyLinkedList<T> that = (MyLinkedList<T>) o;
         return size == that.size &&
                 Objects.equals(lastNode, that.lastNode) &&
                 Objects.equals(firstNode, that.firstNode);
